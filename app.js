@@ -19,25 +19,42 @@ const fetchTodos = () => {
     .then((json) => (arrayOfTodos = json));
 };
 
+fetchTodos();
+
 const logTodos = () => {
   console.log(arrayOfTodos);
 };
 
-const populateTodos = () => {
+const populateTodos = (todos = arrayOfTodos) => {
+  clearTodos();
   //get ol tag to insert list items
   const ol = document.getElementById("todo-list");
 
-  for (let index = 0; index < arrayOfTodos.length; index++) {
+  for (let index = 0; index < todos.length; index++) {
     //create a new div element
     const li = document.createElement("li");
     //get title from object
-    const title = arrayOfTodos[index].title;
+    const title = todos[index].title;
     //put title in the li element
     const listItemText = document.createTextNode(title);
     // add text node to the new list element
     li.appendChild(listItemText);
     //append list item
-    document.body.insertBefore(li, ol);
+    ol.appendChild(li);
     //
   }
+};
+
+const clearTodos = () => {
+  arrayOfTodos = [];
+  const ol = document.getElementById("todo-list");
+  console.log(ol);
+  ol.innerHTML = "";
+};
+
+const populateByUser = () => {
+  const userId = document.getElementById("userid").value;
+  const filteredTodos = arrayOfTodos.filter((item) => item.userId == userId);
+
+  populateTodos(filteredTodos);
 };

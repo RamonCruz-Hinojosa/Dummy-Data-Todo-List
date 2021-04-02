@@ -10,9 +10,13 @@
   <button onclick="fetchTodos()">Fetch Todos</button>
  <button onclick="logTodos()">Log Todos</button>
  <button onclick="populateTodos()">Populate Todos</button>
+ <button onclick="clearTodos()">Clear</button>
  <ol id="todo-list">
    <!-- LIs will go here -->
  </ol>
+ <label for="userid">User Id</label>
+ <input type="number" id="userid" name="userid" min="1" max="10" value="1">
+ <button onclick="populateByUser()">User</button>
   <script src="./app.js"></script>
 </body>
 </html>
